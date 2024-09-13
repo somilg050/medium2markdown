@@ -1,82 +1,29 @@
 # medium2markdown
 
-This project provides a Flask-based API that fetches HTML content from a given URL and converts it to Markdown format using OpenAI's assistant. 
-It's a two-step process: first fetching and parsing the HTML, then sending it to OpenAI for conversion to Markdown.
+This project provides a solution for fetching HTML content from URLs and converting it to Markdown format using OpenAI's assistant. It consists of two main components:
 
-## Features
+1. A Flask-based API for fetching HTML content
+2. A Next.js application (using App Router) that handles the OpenAI integration for converting HTML to Markdown
 
-- Fetch HTML content from any given URL
-- Parse HTML using BeautifulSoup
-- Convert HTML to Markdown using OpenAI's assistant
-- Return the converted Markdown as a JSON response
-- Error handling for invalid requests or processing failures
+## Backend: Flask API for HTML Fetching
 
-## Requirements
+### Setup
 
-- Python 3.6+
-- Flask
-- BeautifulSoup4
-- Requests
-- OpenAI Python library
-
-## Installation
-
-1. Clone this repository:
+1. Install dependencies:
    ```
-   git clone https://github.com/yourusername/html-to-markdown-api.git
-   cd html-to-markdown-api
+   pip install flask beautifulsoup4 requests
    ```
 
-2. Create a virtual environment (optional but recommended):
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-   ```
-
-3. Install the required packages:
-   ```
-   pip install flask beautifulsoup4 requests openai
-   ```
-
-4. Set up your OpenAI API key:
-   - Create a `.env` file in the project root
-   - Add your OpenAI API key: `OPENAI_API_KEY=your_api_key_here`
-
-## Usage
-
-1. Start the Flask server:
+2. Run the Flask server:
    ```
    python app.py
    ```
 
-2. The server will start running on `http://127.0.0.1:5000/`.
+### API Endpoint
 
-3. To convert HTML to Markdown, send a POST request to the `/convert_to_markdown` endpoint with a JSON body containing the URL:
-
-   ```
-   POST /convert_to_markdown
-   Content-Type: application/json
-
-   {
-     "url": "https://example.com"
-   }
-   ```
-
-4. The API will respond with a JSON object containing the Markdown content:
-
-   ```json
-   {
-     "markdown": "# Example Heading\n\nThis is some converted markdown content..."
-   }
-   ```
-
-## API Endpoints
-
-### 1. Fetch HTML Content
-
-- **Endpoint:** `/get_html`
+- **URL:** `/get_html`
 - **Method:** POST
-- **Request Body:**
+- **Body:**
   ```json
   {
     "url": "https://example.com"
@@ -89,28 +36,41 @@ It's a two-step process: first fetching and parsing the HTML, then sending it to
   }
   ```
 
-### 2. Convert HTML to Markdown
+## Frontend: Next.js App with OpenAI Integration
 
-- **Endpoint:** `/convert_to_markdown`
-- **Method:** POST
-- **Request Body:**
-  ```json
-  {
-    "url": "https://example.com"
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "markdown": "# Converted Markdown Content..."
-  }
-  ```
+### Setup
+
+1. Install dependencies:
+   ```
+   npm install
+   ```
+
+2. Set up environment variables:
+   Create a `.env.local` file with:
+   ```
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+3. Run the development server:
+   ```
+   npm run dev
+   ```
+
+### Key Components
+
+- `app/page.js`: Main page component
+- `app/api/convert/route.js`: API route for HTML to Markdown conversion
+
+## Usage
+
+1. Start both the Flask backend and Next.js frontend.
+2. Navigate to the Next.js app in your browser.
+3. Enter a URL to fetch its HTML and convert it to Markdown.
 
 ## Error Handling
 
-- If the URL is not provided in the request body, the API will return a 400 error.
-- If there's an error fetching the URL, the API will return the error message in the response.
-- If there's an error during the OpenAI conversion process, the API will return a 500 error with details.
+- Backend errors (e.g., invalid URLs) are handled and displayed in the frontend.
+- Frontend errors (e.g., OpenAI API issues) are caught and shown to the user.
 
 ## Contributing
 
