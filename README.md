@@ -1,6 +1,6 @@
 # medium2markdown
 
-This project provides a solution for fetching HTML content from URLs and converting it to Markdown format using OpenAI's assistant. It consists of two main components:
+This project provides a solution for fetching HTML content from URLs and converting it to Markdown format using Bedrock/OpenAI's assistant. It consists of two main components:
 
 1. A Flask-based API for fetching HTML content
 2. A Next.js application (using App Router) that handles the OpenAI integration for converting HTML to Markdown
@@ -36,7 +36,7 @@ This project provides a solution for fetching HTML content from URLs and convert
   }
   ```
 
-## Frontend: Next.js App with OpenAI Integration
+## Frontend: Next.js App with Bedrock/OpenAI Integration
 
 ### Setup
 
@@ -70,7 +70,7 @@ This project provides a solution for fetching HTML content from URLs and convert
 ## Error Handling
 
 - Backend errors (e.g., invalid URLs) are handled and displayed in the frontend.
-- Frontend errors (e.g., OpenAI API issues) are caught and shown to the user.
+- Frontend errors (e.g., Bedrock/OpenAI API issues) are caught and shown to the user.
 
 ## Contributing
 
